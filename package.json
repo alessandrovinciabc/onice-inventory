@@ -1,0 +1,25 @@
+{
+  "name": "oniceinventory",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "DEBUG=oniceinventory:* nodemon ./bin/www",
+    "start-dev": "run-p -sn css-watch start",
+    "css-compile": "sass --no-source-map --style=compressed scss:static/css",
+    "css-watch": "sass --no-source-map --watch scss:public/css",
+    "heroku-postbuild": "npm run css-compile"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.34.0"
+  }
+}
