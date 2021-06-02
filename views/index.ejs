@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/main.css" />
-  </head>
-  <body>
-    <h1><%= title %> Inventory</h1>
-  </body>
-</html>
+<%- include('partials/top'); %>
+
+<h1 class="Main__Header Header"><%= title %> Inventory</h1>
+<p class="Main__Stat Stat">Products managed: 0</p>
+<p class="Main__Stat Stat">Out of Stock: 0</p>
+<a class="Main__Link Link" href="/catalog">&gt;Go to catalog</a>
+
+<%- include('partials/bottom'); %>
