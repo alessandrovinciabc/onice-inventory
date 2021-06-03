@@ -10,7 +10,6 @@ router.get('/', function (req, res, next) {
   Promise.all([Item.getCount(), Item.getCount('out')])
     .then((values) => {
       res.render('index', {
-        title: 'OnIce',
         nOfProducts: values[0],
         nOutOfStock: values[1],
       });
