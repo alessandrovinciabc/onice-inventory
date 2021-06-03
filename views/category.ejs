@@ -2,20 +2,7 @@
 
 <h1 class="Main__Header Header">OnIce Inventory</h1>
 
-<p>
-  <a href="/">&lt;Go back</a>
-</p>
-
-<div class="Catalog__Categories">
-  <% categories.forEach((category) => { %>
-  <div class="Category">
-    <a href="<%= category.url %>"><%= category.name %></a>
-    <p><%= category.description %></p>
-  </div>
-  <% }); %>
-</div>
-
-<hr />
+<h2><%= category.name %></h2>
 
 <div class="Catalog__Items">
   <% items.forEach((item) => { %>
@@ -25,7 +12,11 @@
     <p><%= item.stock %></p>
     <p><%= currency %><%= item.price %></p>
   </div>
-  <% }); %>
+  <% }); %> <%- items.length !== 0 ? '' : 'No items here yet!' %>
 </div>
+
+<p>
+  <a href="/catalog">&lt;Go back</a>
+</p>
 
 <%- include('partials/bottom'); %>
