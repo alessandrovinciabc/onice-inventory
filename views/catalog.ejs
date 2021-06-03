@@ -1,0 +1,27 @@
+<%- include('partials/top'); %>
+
+<h1 class="Main__Header Header">OnIce Inventory</h1>
+
+<div class="Catalog__Categories">
+  <% categories.forEach((category) => { %>
+  <div class="Category">
+    <p><%= category.name %></p>
+    <p><%= category.description %></p>
+  </div>
+  <% }); %>
+</div>
+
+<hr />
+
+<div class="Catalog__Items">
+  <% items.forEach((item) => { %>
+  <div class="Item">
+    <p><%= item.name %></p>
+    <p><%= item.desc || '' %></p>
+    <p><%= item.stock %></p>
+    <p><%= currency %><%= item.price %></p>
+  </div>
+  <% }); %>
+</div>
+
+<%- include('partials/bottom'); %>
