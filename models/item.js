@@ -32,4 +32,15 @@ ItemSchema.virtual('url').get(function () {
   return `/catalog/item/${this._id}`;
 });
 
+ItemSchema.static('getCount', function (type = 'all') {
+  const validValues = ['all', 'out'];
+
+  if (!validValues.includes(type))
+    throw new Error('Invalid filter. Must be a value in: ["all", "out"].');
+
+  let filter = type === 'all' ? {} : { stock: 0 };
+
+  return this.countDocuments(filter).exec();
+});
+
 module.exports = mongoose.model('Item', ItemSchema);
