@@ -1,0 +1,24 @@
+<%- include('partials/top'); %>
+
+<h1 class="Main__Header Header">OnIce Inventory</h1>
+
+<h2>Delete category</h2>
+
+<div class="Category">
+  <p><%= category.name %></p>
+  <p>Description: <%= category.desc || '' %></p>
+</div>
+
+<form method="POST" action="<%= category.url %>/delete">
+  <p>
+    Are you sure you want to delete this category? This will delete all its
+    items too.
+  </p>
+  <button>Delete</button>
+</form>
+
+<p>
+  <a href="<%= category.url %>">&lt;Go back</a>
+</p>
+
+<%- include('partials/bottom'); %>

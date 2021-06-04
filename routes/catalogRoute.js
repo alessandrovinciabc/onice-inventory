@@ -102,6 +102,40 @@ router.post(
   }
 );
 
+router.get('/category/:id/delete', async (req, res, next) => {
+  let category;
+  try {
+    category = await Category.findById(req.params.id);
+  } catch (err) {
+    return next(createError(500, 'Unexpected error.'));
+  }
+
+  if (category == null) next(createError(404));
+
+  res.render('categoryDeleteView', { category });
+});
+
+router.post('/category/:id/delete', async (req, res, next) => {
+  let categoryToDelete;
+  try {
+    categoryToDelete = await Category.findById(req.params.id);
+  } catch (err) {
+    return next(createError(500, 'Something went wrong.'));
+  }
+
+  if (categoryToDelete == null)
+    return next(createError(404, 'Category not found.'));
+
+  try {
+    await Category.deleteOne(categoryToDelete);
+    await Item.deleteMany({ category: req.params.id });
+  } catch (err) {
+    return next(createError(500, 'Something went wrong.'));
+  }
+
+  res.redirect('/catalog');
+});
+
 router.get('/item/new', async (req, res) => {
   let categories;
   try {
