@@ -2,6 +2,8 @@
 
 <h1 class="Main__Header Header">OnIce Inventory</h1>
 
+<h2>Add new category</h2>
+
 <form method="POST">
   <label for="name"> Name </label><br />
   <input
@@ -10,15 +12,19 @@
     maxlength="100"
     type="text"
     name="name"
-    value="<%= category.name %>"
+    autocomplete="off"
     id="name"
   /><br />
   <label for="description"> Description </label><br />
-  <textarea maxlength="2000" name="description" id="description">
-<%= category.description || '' %></textarea
+  <textarea
+    maxlength="2000"
+    name="description"
+    id="description"
+    autocomplete="off"
+  ></textarea
   ><br />
 
-  <button>Confirm Edit</button>
+  <button>Confirm</button>
 </form>
 
 <p>

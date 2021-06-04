@@ -4,11 +4,22 @@
 
 <form method="POST">
   <label for="name"> Name </label><br />
-  <input type="text" name="name" value="<%= item.name %>" id="name" /><br />
+  <input
+    required
+    minlength="1"
+    maxlength="150"
+    type="text"
+    name="name"
+    value="<%= item.name %>"
+    id="name"
+  /><br />
   <label for="desc"> Description </label><br />
-  <textarea name="desc" id="desc"><%= item.desc || '' %></textarea><br />
+  <textarea maxlength="2000" name="desc" id="desc">
+<%= item.desc || '' %></textarea
+  ><br />
   <label for="stock"> Stock </label><br />
   <input
+    min="0"
     id="stock"
     type="number"
     name="stock"
@@ -16,6 +27,7 @@
   /><br />
   <label for="price"> Price(<%= currency %>): </label><br />
   <input
+    min="0"
     type="number"
     name="price"
     step="0.01"

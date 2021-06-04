@@ -28,6 +28,32 @@ router.get('/', async function (req, res) {
   res.render('catalogView', { items, currency, categories: converted });
 });
 
+router.get('/category/new', (req, res) => {
+  res.render('categoryNewView');
+});
+
+router.post(
+  '/category/new',
+  body('name').isString().escape().trim().isLength({ min: 1, max: 100 }),
+  body('desc').isString().escape().trim().isLength({ max: 2000 }),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty())
+      return next(createError(400, 'Invalid request format'));
+
+    let properties = req.body;
+    let newCategory;
+    try {
+      newCategory = await Category.create(properties);
+    } catch (err) {
+      return next(createError(500, 'Unexpected error.'));
+    }
+
+    res.redirect(await newCategory.url);
+  }
+);
+
 router.get('/category/:id', async function (req, res, next) {
   let category;
 
@@ -55,7 +81,12 @@ router.get('/category/:id/edit', (req, res, next) => {
 router.post(
   '/category/:id/edit',
   body('name').isString().escape().trim().isLength({ min: 1, max: 100 }),
-  body('desc').isString().escape().trim().isLength({ max: 2000 }),
+  body('desc')
+    .optional({ checkFalsy: true })
+    .isString()
+    .escape()
+    .trim()
+    .isLength({ max: 2000 }),
   async (req, res, next) => {
     const errors = validationResult(req);
 
