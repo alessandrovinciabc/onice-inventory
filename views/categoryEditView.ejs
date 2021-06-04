@@ -1,0 +1,20 @@
+<%- include('partials/top'); %>
+
+<h1 class="Main__Header Header">OnIce Inventory</h1>
+
+<form method="POST">
+  <label for="name"> Name </label><br />
+  <input type="text" name="name" value="<%= category.name %>" id="name" /><br />
+  <label for="description"> Description </label><br />
+  <textarea name="description" id="description">
+<%= category.description || '' %></textarea
+  ><br />
+
+  <button>Confirm Edit</button>
+</form>
+
+<p>
+  <a href="/catalog">&lt;Go back to catalog</a>
+</p>
+
+<%- include('partials/bottom'); %>

@@ -6,7 +6,7 @@ const Item = require('./item');
 
 const CategorySchema = new Schema({
   name: { required: true, type: String, minLength: 1, maxLength: 100 },
-  description: { type: String, minLength: 1, maxLength: 2000 },
+  description: { type: String, default: '', maxLength: 2000 },
 });
 
 CategorySchema.virtual('url').get(function () {

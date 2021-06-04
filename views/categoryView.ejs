@@ -3,6 +3,9 @@
 <h1 class="Main__Header Header">OnIce Inventory</h1>
 
 <h2><%= category.name %></h2>
+<p><%= category.description %></p>
+
+<hr />
 
 <div class="Catalog__Items">
   <% items.forEach((item) => { %>
@@ -13,6 +16,10 @@
   </div>
   <% }); %> <%- items.length !== 0 ? '' : 'No items here yet!' %>
 </div>
+
+<p>
+  <a href="<%= category.url %>/edit">Edit this category</a>
+</p>
 
 <p>
   <a href="/catalog">&lt;Go back</a>

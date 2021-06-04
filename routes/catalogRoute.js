@@ -44,6 +44,33 @@ router.get('/category/:id', async function (req, res, next) {
   res.render('categoryView', { currency, category, items });
 });
 
+router.get('/category/:id/edit', (req, res, next) => {
+  Category.findById(req.params.id, (err, category) => {
+    if (err || category == null) next(createError(404));
+
+    res.render('categoryEditView', { category });
+  });
+});
+
+router.post(
+  '/category/:id/edit',
+  body('name').isString().escape().trim().isLength({ min: 1, max: 100 }),
+  body('desc').isString().escape().trim().isLength({ max: 2000 }),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty())
+      return next(createError(400, 'Invalid request format'));
+
+    let properties = req.body;
+    let categoryToChange = await Category.findById(req.params.id);
+
+    categoryToChange.set(properties);
+    categoryToChange.save();
+    res.redirect(await categoryToChange.url);
+  }
+);
+
 router.get('/item/:id', (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
     if (err || item == null) next(createError(404));
