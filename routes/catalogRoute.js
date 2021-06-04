@@ -177,4 +177,35 @@ router.post(
   }
 );
 
+router.get('/item/:id/delete', async (req, res) => {
+  let item;
+  try {
+    item = await Item.findById(req.params.id);
+  } catch (err) {
+    return next(createError(500, 'Unexpected error.'));
+  }
+
+  if (item == null) next(createError(404));
+
+  res.render('itemDeleteView', { currency, item });
+});
+
+router.post('/item/:id/delete', async (req, res, next) => {
+  let itemToDelete;
+  try {
+    itemToDelete = await Item.findById(req.params.id);
+  } catch (err) {
+    return next(createError(500, 'Something went wrong.'));
+  }
+
+  if (itemToDelete == null) return next(createError(404, 'Item not found.'));
+
+  try {
+    await Item.deleteOne(itemToDelete);
+  } catch (err) {
+    return next(createError(500, 'Something went wrong.'));
+  }
+
+  res.redirect('/catalog');
+});
 module.exports = router;
