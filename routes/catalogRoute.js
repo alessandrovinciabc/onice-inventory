@@ -35,7 +35,7 @@ router.get('/category/new', (req, res) => {
 router.post(
   '/category/new',
   body('name').isString().escape().trim().isLength({ min: 1, max: 100 }),
-  body('desc').isString().escape().trim().isLength({ max: 2000 }),
+  body('desc').default('').isString().escape().trim().isLength({ max: 2000 }),
   async (req, res, next) => {
     const errors = validationResult(req);
 
@@ -102,6 +102,38 @@ router.post(
   }
 );
 
+router.get('/item/new', async (req, res) => {
+  let categories;
+  try {
+    categories = await Category.find({});
+  } catch (err) {
+    return next(createError(500, 'Unexpected error.'));
+  }
+  res.render('itemNewView', { currency, categories });
+});
+
+router.post(
+  '/item/new',
+  body('name').isString().escape().trim().isLength({ min: 1, max: 150 }),
+  body('desc').default('').isString().escape().trim().isLength({ max: 2000 }),
+  body('stock').default(0).isInt({ min: 0 }).toInt(),
+  body('price').default(0).isFloat({ min: 0 }).toFloat(),
+  async (req, res, next) => {
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) return next(createError(400, 'Bad request.'));
+
+    let newItem;
+    try {
+      newItem = await Item.create(req.body);
+    } catch (err) {
+      return next(createError(500, 'Something unexpected happen.'));
+    }
+
+    res.redirect(newItem.url);
+  }
+);
+
 router.get('/item/:id', (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
     if (err || item == null) next(createError(404));
@@ -110,20 +142,26 @@ router.get('/item/:id', (req, res, next) => {
   });
 });
 
-router.get('/item/:id/edit', (req, res, next) => {
-  Item.findById(req.params.id, (err, item) => {
-    if (err || item == null) next(createError(404));
+router.get('/item/:id/edit', async (req, res, next) => {
+  let item, categories;
+  try {
+    categories = await Category.find({});
+    item = await Item.findById(req.params.id);
+  } catch (err) {
+    return next(createError(500, 'Unexpected error.'));
+  }
 
-    res.render('itemEditView', { currency, item });
-  });
+  if (item == null) next(createError(404));
+
+  res.render('itemEditView', { currency, item, categories });
 });
 
 router.post(
   '/item/:id/edit',
   body('name').isString().escape().trim().isLength({ min: 1, max: 150 }),
   body('desc').isString().escape().trim().isLength({ max: 2000 }),
-  body('stock').isInt({ min: 0 }),
-  body('price').isFloat({ min: 0 }),
+  body('stock').default(0).isInt({ min: 0 }).toInt(),
+  body('price').default(0).isFloat({ min: 0 }).toFloat(),
   async (req, res, next) => {
     const errors = validationResult(req);
 

@@ -2,6 +2,8 @@
 
 <h1 class="Main__Header Header">OnIce Inventory</h1>
 
+<h2>Add new item</h2>
+
 <form method="POST">
   <label for="name"> Name </label><br />
   <input
@@ -10,44 +12,35 @@
     maxlength="150"
     type="text"
     name="name"
-    value="<%= item.name %>"
     id="name"
+    autocomplete="off"
   /><br />
   <label for="desc"> Description </label><br />
-  <textarea maxlength="2000" name="desc" id="desc">
-<%= item.desc || '' %></textarea
-  ><br />
+  <textarea maxlength="2000" name="desc" id="desc"></textarea><br />
   <label for="stock"> Stock </label><br />
   <input
+    autocomplete="off"
     min="0"
     id="stock"
     type="number"
     name="stock"
-    value="<%= item.stock %>"
   /><br />
   <label for="price"> Price(<%= currency %>): </label><br />
   <input
+    autocomplete="off"
     min="0"
     type="number"
     name="price"
     step="0.01"
-    value="<%= item.price %>"
   /><br />
   <select name="category" required>
     <% categories.forEach((category) => { %>
-    
-    <option 
-      <%- category._id.toString() === item.category.toString() ? 'selected' : '' %>
-      value="<%- category._id %>"
-    >
-    <%= category.name %>
-    </option>
-
+    <option value="<%- category._id %>"><%= category.name %></option>
     <% }) %>
   </select>
   <br />
 
-  <button>Confirm Edit</button>
+  <button>Add</button>
 </form>
 
 <p>
