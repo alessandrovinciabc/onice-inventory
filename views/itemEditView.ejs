@@ -1,0 +1,32 @@
+<%- include('partials/top'); %>
+
+<h1 class="Main__Header Header">OnIce Inventory</h1>
+
+<form>
+  <label for="name"> Name </label><br />
+  <input type="text" name="name" value="<%= item.name %>" id="name" /><br />
+  <label for="desc"> Description </label><br />
+  <textarea name="desc" id="desc"><%= item.desc || '' %></textarea><br />
+  <label for="stock"> Stock </label><br />
+  <input
+    id="stock"
+    type="number"
+    name="stock"
+    value="<%= item.stock %>"
+  /><br />
+  <label for="price"> Price(<%= currency %>): </label><br />
+  <input
+    type="number"
+    name="price"
+    step="0.01"
+    value="<%= item.price %>"
+  /><br />
+
+  <button>Confirm Edit</button>
+</form>
+
+<p>
+  <a href="/catalog">&lt;Go back to catalog</a>
+</p>
+
+<%- include('partials/bottom'); %>

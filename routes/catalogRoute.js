@@ -50,4 +50,12 @@ router.get('/item/:id', (req, res, next) => {
   });
 });
 
+router.get('/item/:id/edit', (req, res, next) => {
+  Item.findById(req.params.id, (err, item) => {
+    if (err || item == null) next(createError(404));
+
+    res.render('itemEditView', { currency, item });
+  });
+});
+
 module.exports = router;
