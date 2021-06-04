@@ -23,7 +23,7 @@ router.get('/', async function (req, res) {
     category.toObject({ virtuals: true })
   );
 
-  res.render('catalog', { items, currency, categories: converted });
+  res.render('catalogView', { items, currency, categories: converted });
 });
 
 router.get('/category/:id', async function (req, res, next) {
@@ -39,14 +39,14 @@ router.get('/category/:id', async function (req, res, next) {
 
   if (category == null) next(createError(404, 'Resource was not found'));
 
-  res.render('category', { currency, category, items });
+  res.render('categoryView', { currency, category, items });
 });
 
 router.get('/item/:id', (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
     if (err || item == null) next(createError(404));
 
-    res.render('item', { currency, item });
+    res.render('itemView', { currency, item });
   });
 });
 

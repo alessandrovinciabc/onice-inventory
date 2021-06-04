@@ -9,7 +9,7 @@ const Item = require('../models/item');
 router.get('/', function (req, res, next) {
   Promise.all([Item.getCount(), Item.getCount('out')])
     .then((values) => {
-      res.render('index', {
+      res.render('indexView', {
         nOfProducts: values[0],
         nOutOfStock: values[1],
       });
