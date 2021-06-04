@@ -42,4 +42,12 @@ router.get('/category/:id', async function (req, res, next) {
   res.render('category', { currency, category, items });
 });
 
+router.get('/item/:id', (req, res, next) => {
+  Item.findById(req.params.id, (err, item) => {
+    if (err || item == null) next(createError(404));
+
+    res.render('item', { currency, item });
+  });
+});
+
 module.exports = router;

@@ -7,10 +7,9 @@
 <div class="Catalog__Items">
   <% items.forEach((item) => { %>
   <div class="Item">
-    <p><%= item.name %></p>
-    <p><%= item.desc || '' %></p>
-    <p><%= item.stock %></p>
-    <p><%= currency %><%= item.price %></p>
+    <p>
+      <a href="<%= item.url %>"><%= item.name %></a>
+    </p>
   </div>
   <% }); %> <%- items.length !== 0 ? '' : 'No items here yet!' %>
 </div>
