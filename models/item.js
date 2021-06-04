@@ -12,7 +12,7 @@ const ItemSchema = new Schema({
   },
   desc: {
     type: String,
-    minLength: 1,
+    default: '',
     maxLength: 2000,
   },
   stock: {

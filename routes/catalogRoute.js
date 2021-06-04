@@ -1,6 +1,8 @@
 let express = require('express');
 let router = express.Router();
 
+const { body, validationResult } = require('express-validator');
+
 const createError = require('http-errors');
 
 const debug = require('debug')('catalogRouter');
@@ -57,5 +59,26 @@ router.get('/item/:id/edit', (req, res, next) => {
     res.render('itemEditView', { currency, item });
   });
 });
+
+router.post(
+  '/item/:id/edit',
+  body('name').isString().escape().trim().isLength({ min: 1, max: 150 }),
+  body('desc').isString().escape().trim().isLength({ max: 2000 }),
+  body('stock').isInt({ min: 0 }),
+  body('price').isFloat({ min: 0 }),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty())
+      return next(createError(400, 'Invalid request format'));
+
+    let properties = req.body;
+    let itemToChange = await Item.findById(req.params.id);
+
+    itemToChange.set(properties);
+    itemToChange.save();
+    res.redirect(await itemToChange.url);
+  }
+);
 
 module.exports = router;
