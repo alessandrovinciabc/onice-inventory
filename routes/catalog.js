@@ -19,7 +19,9 @@ router.get('/', async function (req, res) {
     debug(err);
   }
 
-  let converted = categories.map((category) => category.toObject());
+  let converted = categories.map((category) =>
+    category.toObject({ virtuals: true })
+  );
   let idMap = new Map();
 
   converted.forEach((category) => {

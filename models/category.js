@@ -14,11 +14,4 @@ CategorySchema.virtual('url').get(function () {
   return `/catalog/category/${this._id}`;
 });
 
-CategorySchema.virtual('nOfItems').get(function () {
-  Item.countDocument({}, function (err, count) {
-    console.log(count);
-    /*Need to complete*/
-  });
-});
-
 module.exports = mongoose.model('Category', CategorySchema);
