@@ -33,7 +33,8 @@
     name="price"
     step="0.01"
   /><br />
-  <select name="category" required>
+  <label for="category">Category</label><br />
+  <select id="category" name="category" required>
     <% categories.forEach((category) => { %>
     <option value="<%- category._id %>"><%= category.name %></option>
     <% }) %>
