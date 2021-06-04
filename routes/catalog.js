@@ -22,39 +22,8 @@ router.get('/', async function (req, res) {
   let converted = categories.map((category) =>
     category.toObject({ virtuals: true })
   );
-  let idMap = new Map();
 
-  converted.forEach((category) => {
-    if (category.parent == null) return;
-
-    let parentId, currentId;
-
-    parentId = category.parent.toString();
-    currentId = category._id.toString();
-
-    if (!idMap.has(parentId)) {
-      idMap.set(parentId, [currentId]);
-    } else {
-      idMap.get(parentId).push(currentId);
-    }
-  });
-
-  let withChildren = converted.map((category) => {
-    let copy, currentId, mapData;
-
-    copy = JSON.parse(JSON.stringify(category));
-
-    currentId = category._id.toString();
-
-    mapData = idMap.get(currentId);
-    copy.children = mapData || [];
-
-    return copy;
-  });
-
-  withChildren.sort((a, b) => b.children.length - a.children.length);
-
-  res.render('catalog', { items, currency, categories: withChildren });
+  res.render('catalog', { items, currency, categories: converted });
 });
 
 router.get('/category/:id', async function (req, res, next) {
