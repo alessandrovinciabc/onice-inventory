@@ -177,7 +177,7 @@ router.post(
   }
 );
 
-router.get('/item/:id/delete', async (req, res) => {
+router.get('/item/:id/delete', async (req, res, next) => {
   let item;
   try {
     item = await Item.findById(req.params.id);
