@@ -7,7 +7,8 @@
     "start-dev": "run-p -sn css-watch start",
     "css-compile": "sass --no-source-map --style=compressed scss:static/css",
     "css-watch": "sass --no-source-map --watch scss:public/css",
-    "heroku-postbuild": "npm run css-compile"
+    "heroku-postbuild": "npm run css-compile",
+    "start-heroku": "node ./bin/www"
   },
   "dependencies": {
     "compression": "^1.7.4",
