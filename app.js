@@ -3,6 +3,8 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let compression = require('compression');
+let helmet = require('helmet');
 
 let indexRouter = require('./routes/indexRoute');
 let catalogRouter = require('./routes/catalogRoute');
@@ -19,6 +21,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(helmet());
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'public')));
 

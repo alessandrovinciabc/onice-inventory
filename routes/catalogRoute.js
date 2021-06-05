@@ -187,8 +187,6 @@ router.get('/item/:id/edit', async (req, res, next) => {
 
   if (item == null) next(createError(404));
 
-  console.log(item);
-
   res.render('itemEditView', { currency, item, categories });
 });
 
