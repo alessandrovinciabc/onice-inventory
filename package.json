@@ -5,7 +5,7 @@
   "scripts": {
     "start": "DEBUG=oniceinventory:* nodemon ./bin/www",
     "start-dev": "run-p -sn css-watch start",
-    "css-compile": "sass --no-source-map --style=compressed scss:static/css",
+    "css-compile": "sass --no-source-map --style=compressed scss:public/css",
     "css-watch": "sass --no-source-map --watch scss:public/css",
     "heroku-postbuild": "npm run css-compile",
     "start-heroku": "node ./bin/www"
