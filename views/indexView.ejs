@@ -1,8 +1,9 @@
 <%- include('partials/top'); %>
 
-<h1 class="Main__Header Header">OnIce Inventory</h1>
-<p class="Main__Stat Stat">Products managed: <%= nOfProducts %></p>
-<p class="Main__Stat Stat">Out of Stock: <%= nOutOfStock %></p>
-<a class="Main__Link Link" href="/catalog">&gt;Go to catalog</a>
+<div class="Main">
+  <p class="Main__Stat Stat">Products managed: <%= nOfProducts %></p>
+  <p class="Main__Stat Stat">Out of Stock: <%= nOutOfStock %></p>
+  <a class="Button--main" href="/catalog">View catalog</a>
+</div>
 
 <%- include('partials/bottom'); %>

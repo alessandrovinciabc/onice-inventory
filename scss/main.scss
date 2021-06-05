@@ -1,4 +1,79 @@
+@use 'reset';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+}
+
+$main-gradient: linear-gradient(to bottom, rgb(77, 190, 255), rgb(0, 162, 255));
+
+.OnIce__Header {
+  font-size: 2rem;
+  font-weight: bold;
+
+  display: flex;
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+
+  width: 100%;
+  height: 4.2rem;
+
+  color: white;
+  background: $main-gradient;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.Main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 2rem;
+  line-height: 2;
+
+  &__Stat {
+    font-weight: bold;
+  }
+}
+
+.Button {
+  height: 3rem;
+  width: 150px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  display: grid;
+  place-items: center;
+}
+
+.Button--main {
+  @extend .Button;
+
+  background: $main-gradient;
+  color: white;
+
+  &:hover {
+    background: linear-gradient(
+      to bottom,
+      rgb(77, 190, 255),
+      rgb(125, 214, 255)
+    );
+  }
 }
