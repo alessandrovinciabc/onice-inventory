@@ -1,34 +1,35 @@
 <%- include('partials/top'); %>
 
-<p>
-  <a href="/">&lt;Go back</a>
-</p>
+<div class="CatalogContainer">
+  <section class="Sidebar">
+    <h2 class="Header">Categories</h2>
+    <div class="CategoryContainer">
+      <% categories.forEach((category) => { %>
+      <div class="Category">
+        <a class="Category__Link" href="<%= category.url %>"
+          ><%= category.name %></a
+        >
+      </div>
+      <% }); %>
+    </div>
 
-<div class="Catalog__Categories">
-  <% categories.forEach((category) => { %>
-  <div class="Category">
-    <a href="<%= category.url %>"><%= category.name %></a>
-  </div>
-  <% }); %>
-</div>
+    <div class="ActionContainer">
+      <a class="Action" href="/catalog/category/new">Add Category</a>
+      <a class="Action" href="/catalog/item/new">Add Item</a>
+      <a class="Action" href="/">Go back</a>
+    </div>
+  </section>
 
-<br />
-<br />
-<p>
-  <a href="/catalog/category/new">Add New Category +</a><br /><br />
-  <a href="/catalog/item/new">Add New Item +</a>
-</p>
-
-<hr />
-
-<div class="Catalog__Items">
-  <% items.forEach((item) => { %>
-  <div class="Item">
-    <p>
-      <a href="<%= item.url %>"><%= item.name %></a>
-    </p>
-  </div>
-  <% }); %>
+  <section class="Items">
+    <h2 class="Header">All items</h2>
+    <div class="ItemContainer">
+      <% items.forEach((item) => { %>
+      <div class="Item">
+        <a class="Item__Link" href="<%= item.url %>"><%= item.name %></a>
+      </div>
+      <% }); %>
+    </div>
+  </section>
 </div>
 
 <%- include('partials/bottom'); %>

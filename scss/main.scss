@@ -47,6 +47,10 @@ $main-gradient: linear-gradient(to bottom, rgb(77, 190, 255), rgb(0, 162, 255));
   &__Stat {
     font-weight: bold;
   }
+
+  &__Button {
+    margin-top: 2rem;
+  }
 }
 
 .Button {
@@ -76,4 +80,53 @@ $main-gradient: linear-gradient(to bottom, rgb(77, 190, 255), rgb(0, 162, 255));
       rgb(125, 214, 255)
     );
   }
+}
+
+.Action {
+  @extend .Button--main;
+
+  width: 100%;
+  padding: 8px 1rem;
+  font-size: 1rem;
+  height: auto;
+
+  border-radius: 2px;
+
+  margin: 5px 0;
+
+  &Container {
+    width: max-content;
+    margin-top: 2rem;
+  }
+}
+
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin: 2rem;
+  width: max-content;
+}
+
+.Items {
+  margin: 2rem;
+}
+
+h2.Header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  align-self: center;
+
+  margin-bottom: 2rem;
+}
+
+.CatalogContainer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.CategoryContainer,
+.ItemContainer {
+  line-height: 2;
 }
