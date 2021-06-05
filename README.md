@@ -6,10 +6,10 @@ Web app to manage an inventory for a shop. CRUD products and categories.
 
 ## Technologies
 
-Sass
-Node.js
-Express
-MongoDB through Mongoose
+- Sass
+- Node.js
+- Express
+- MongoDB through Mongoose
 
 ## Screenshot
 
