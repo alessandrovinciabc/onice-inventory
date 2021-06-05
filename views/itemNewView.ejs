@@ -1,49 +1,38 @@
 <%- include('partials/top'); %>
 
-<h2>Add new item</h2>
+<section class="Wrapper">
+  <h2 class="Header">Add new item</h2>
 
-<form method="POST">
-  <label for="name"> Name </label><br />
-  <input
-    required
-    minlength="1"
-    maxlength="150"
-    type="text"
-    name="name"
-    id="name"
-    autocomplete="off"
-  /><br />
-  <label for="desc"> Description </label><br />
-  <textarea maxlength="2000" name="desc" id="desc"></textarea><br />
-  <label for="stock"> Stock </label><br />
-  <input
-    autocomplete="off"
-    min="0"
-    id="stock"
-    type="number"
-    name="stock"
-  /><br />
-  <label for="price"> Price(<%= currency %>): </label><br />
-  <input
-    autocomplete="off"
-    min="0"
-    type="number"
-    name="price"
-    step="0.01"
-  /><br />
-  <label for="category">Category</label><br />
-  <select id="category" name="category" required>
-    <% categories.forEach((category) => { %>
-    <option value="<%- category._id %>"><%= category.name %></option>
-    <% }) %>
-  </select>
-  <br />
+  <form method="POST">
+    <label for="name"> Name </label>
+    <input
+      required
+      minlength="1"
+      maxlength="150"
+      type="text"
+      name="name"
+      id="name"
+      autocomplete="off"
+    />
+    <label for="desc"> Description </label>
+    <textarea maxlength="2000" name="desc" id="desc"></textarea>
+    <label for="stock"> Stock </label>
+    <input autocomplete="off" min="0" id="stock" type="number" name="stock" />
+    <label for="price"> Price(<%= currency %>): </label>
+    <input autocomplete="off" min="0" type="number" name="price" step="0.01" />
+    <label for="category">Category</label>
+    <select id="category" name="category" required>
+      <% categories.forEach((category) => { %>
+      <option value="<%- category._id %>"><%= category.name %></option>
+      <% }) %>
+    </select>
 
-  <button>Add</button>
-</form>
+    <button class="Button--main">Add</button>
+  </form>
 
-<p>
-  <a href="/catalog">&lt;Go back to catalog</a>
-</p>
+  <p class="m2">
+    <a class="Action" href="/catalog">Go to catalog</a>
+  </p>
+</section>
 
 <%- include('partials/bottom'); %>

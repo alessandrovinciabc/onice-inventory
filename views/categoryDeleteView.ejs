@@ -1,22 +1,26 @@
 <%- include('partials/top'); %>
 
-<h2>Delete category</h2>
+<section class="Wrapper">
+  <h2 class="Header">Delete category</h2>
 
-<div class="Category">
-  <p><%= category.name %></p>
-  <p>Description: <%= category.desc || '' %></p>
-</div>
+  <div class="Category">
+    <p class="Category__name"><%= category.name %></p>
+    <p class="Category__description m2">
+      Description: <%= category.desc || '' %>
+    </p>
+  </div>
 
-<form method="POST" action="<%= category.url %>/delete">
+  <form class="m2" method="POST" action="<%= category.url %>/delete">
+    <p>
+      Are you sure you want to delete this category? This will delete all its
+      items too.
+    </p>
+    <button class="Button--danger">Delete</button>
+  </form>
+
   <p>
-    Are you sure you want to delete this category? This will delete all its
-    items too.
+    <a class="Action" href="<%= category.url %>">Go back</a>
   </p>
-  <button>Delete</button>
-</form>
-
-<p>
-  <a href="<%= category.url %>">&lt;Go back</a>
-</p>
+</section>
 
 <%- include('partials/bottom'); %>

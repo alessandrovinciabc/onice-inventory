@@ -1,28 +1,28 @@
 <%- include('partials/top'); %>
 
-<h2><%= category.name %></h2>
-<p><%= category.description %></p>
+<div class="Wrapper">
+  <h2 class="Header"><%= category.name %></h2>
+  <p class="Category__description"><%= category.description %></p>
 
-<hr />
-
-<div class="Catalog__Items">
-  <% items.forEach((item) => { %>
-  <div class="Item">
-    <p>
-      <a href="<%= item.url %>"><%= item.name %></a>
-    </p>
+  <div class="Catalog__Items m2">
+    <% items.forEach((item) => { %>
+    <div class="Item">
+      <p>
+        <a href="<%= item.url %>"><%= item.name %></a>
+      </p>
+    </div>
+    <% }); %> <%- items.length !== 0 ? '' : 'No items here yet!' %>
   </div>
-  <% }); %> <%- items.length !== 0 ? '' : 'No items here yet!' %>
+
+  <p>
+    <a class="Action" href="/catalog/item/new">Add item</a>
+    <a class="Action" href="<%= category.url %>/edit">Edit this category</a>
+    <a class="Action" href="<%= category.url %>/delete">Delete</a>
+  </p>
+
+  <p class="m2">
+    <a class="Action" href="/catalog">Go back</a>
+  </p>
 </div>
-
-<p>
-  <a href="/catalog/item/new">Add item</a><br />
-  <a href="<%= category.url %>/edit">Edit this category</a><br />
-  <a href="<%= category.url %>/delete">Delete</a>
-</p>
-
-<p>
-  <a href="/catalog">&lt;Go back</a>
-</p>
 
 <%- include('partials/bottom'); %>
