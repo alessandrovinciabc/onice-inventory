@@ -1,60 +1,56 @@
 <%- include('partials/top'); %>
 
-<form method="POST">
-  <label for="name"> Name </label><br />
-  <input
-    required
-    minlength="1"
-    maxlength="150"
-    type="text"
-    name="name"
-    value="<%= item.name %>"
-    id="name"
-  /><br />
-  <label for="desc"> Description </label><br />
-  <textarea maxlength="2000" name="desc" id="desc">
-<%= item.desc || '' %></textarea
-  ><br />
-  <label for="stock"> Stock </label><br />
-  <input
-    min="0"
-    id="stock"
-    type="number"
-    name="stock"
-    value="<%= item.stock %>"
-  /><br />
-  <label for="price"> Price(<%= currency %>): </label><br />
-  <input
-    min="0"
-    type="number"
-    name="price"
-    step="0.01"
-    value="<%= item.price %>"
-  /><br />
-  <label for="category">Category</label><br/>
-  <select id="category" name="category" required>
-    <% categories.forEach((category) => { %>
-    
-    <option 
-      <%- category._id.toString() === item.category.toString() ? 'selected' : '' %>
-      value="<%- category._id %>"
-    >
-    <%= category.name %>
-    </option>
-
-    <% }) %>
-  </select>
-  <br />
-
-  <button>Confirm Edit</button>
-</form>
-
-<p>
-  <a href="<%- item.url %>">Cancel</a>
-  <br /><br />
-  <a href="/catalog/category/<%- item.category %>">&lt;Go back to category</a>
-  <br />
-  <a href="/catalog">&lt;Go back to catalog</a>
-</p>
+<div class="Wrapper">
+  <p>
+    <a class="Action" href="/catalog/category/<%- item.category %>">Go to category</a>
+    <a class="Action" href="/catalog">Go to catalog</a>
+  </p>
+  <form class="m2" method="POST">
+    <label for="name"> Name </label>
+    <input
+      required
+      minlength="1"
+      maxlength="150"
+      type="text"
+      name="name"
+      value="<%= item.name %>"
+      id="name"
+    />
+    <label for="desc"> Description </label>
+    <textarea maxlength="2000" name="desc" id="desc"><%= item.desc || ''%></textarea>
+    <label for="stock"> Stock </label>
+    <input
+      min="0"
+      id="stock"
+      type="number"
+      name="stock"
+      value="<%= item.stock %>"
+    />
+    <label for="price"> Price(<%= currency %>): </label>
+    <input
+      min="0"
+      type="number"
+      name="price"
+      step="0.01"
+      value="<%= item.price %>"
+    />
+    <label for="category">Category</label>
+    <select id="category" name="category" required>
+      <% categories.forEach((category) => { %>
+      
+      <option 
+        <%- category._id.toString() === item.category.toString() ? 'selected' : '' %>
+        value="<%- category._id %>"
+      >
+      <%= category.name %>
+      </option>
+  
+      <% }) %>
+    </select>
+  
+    <button class="Button--main">Confirm Edit</button>
+    <a href="<%- item.url %>">Cancel</a>
+  </form>
+</div>
 
 <%- include('partials/bottom'); %>

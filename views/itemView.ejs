@@ -1,22 +1,26 @@
 <%- include('partials/top'); %>
+<div class="ItemViewWrapper">
+  <section class="ItemView">
+    <div class="Item">
+      <h2><%= item.name %></h2>
+      <p>Description: <%= item.desc || '' %></p>
+      <p>Qty. <%= item.stock %></p>
+      <p><%= currency %><%= item.price %></p>
+    </div>
 
-<div class="Item">
-  <h2><%= item.name %></h2>
-  <p>Description: <%= item.desc || '' %></p>
-  <p>Qty. <%= item.stock %></p>
-  <p><%= currency %><%= item.price %></p>
+    <div class="ItemControls">
+      <a href="<%= item.url %>/edit">Edit this item</a>
+      <br />
+      <a href="<%= item.url %>/delete">Delete</a>
+    </div>
+  </section>
+
+  <div class="ActionContainer">
+    <a class="Action" href="/catalog/category/<%- item.category %>"
+      >Go to category</a
+    >
+    <a class="Action" href="/catalog">Go to catalog</a>
+  </div>
 </div>
-
-<p>
-  <a href="<%= item.url %>/edit">Edit this item</a>
-  <br />
-  <a href="<%= item.url %>/delete">Delete</a>
-</p>
-
-<p>
-  <a href="/catalog/category/<%- item.category %>">&lt;Go back to category</a>
-  <br />
-  <a href="/catalog">&lt;Go back to catalog</a>
-</p>
 
 <%- include('partials/bottom'); %>
